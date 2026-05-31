@@ -1,0 +1,24 @@
+MIT License
+
+Copyright (c) 2026 AstroWay
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this OpenAPI specification and associated documentation files (the "Spec"),
+to deal in the Spec without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Spec, and to permit persons to whom the Spec is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Spec.
+
+THE SPEC IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SPEC OR THE USE OR OTHER DEALINGS IN THE SPEC.
+
+Note: this license covers the OpenAPI specification document only, not the
+AstroWay API service itself, which is provided under its own Terms of Service
+at https://api.astroway.info.
