@@ -1,0 +1,43 @@
+name: Refresh OpenAPI snapshot
+
+# Keeps openapi.json in sync with the live production spec so the
+# keyword-slug landing repo never drifts. Public repo → Actions minutes
+# are free. Commits only when the spec actually changed.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'   # daily 06:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-openapi
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch production OpenAPI spec
+        run: |
+          curl -fsSL --retry 3 --retry-delay 5 \
+            https://api.astroway.info/v1/openapi.json -o openapi.next.json
+          # sanity: must be valid JSON with an openapi version field
+          python3 -c "import json,sys; d=json.load(open('openapi.next.json')); sys.exit(0 if d.get('openapi') else 1)"
+          mv openapi.next.json openapi.json
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- openapi.json; then
+            echo "No spec changes — nothing to commit."
+            exit 0
+          fi
+          git config user.name 'AstroWay Team'
+          git config user.email 'astroway.info@gmail.com'
+          git add openapi.json
+          git commit -m "chore: refresh OpenAPI snapshot from prod"
+          git push
